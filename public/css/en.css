@@ -1,0 +1,36 @@
+.nav .nav__link{
+   flex-direction: row-reverse;
+}
+.cart{
+   margin-left: 50px;
+}
+.search{
+   padding: 0 32px 0 16px;
+}
+.search .search__btn {
+   right: 10px;
+   bottom: 5px;
+}
+.search .search__input{
+   text-align: right;
+}
+.header .header__link {
+   right: 0;
+   left: initial;
+}
+.next {
+   right: 50px;
+}
+.prev {
+   left: 50px;
+}
+.category .category__arrow--next{
+   transform: none;
+   -webkit-transform: none;
+   -moz-transform: none;
+   -ms-transform: none;
+   -o-transform: none;
+}
+.category .category__prev img{
+   transform: scaleX(-1);
+}
