@@ -1,11 +1,11 @@
 <?php
 
 namespace Config;
-use App\Traits\Upload;
+use App\Traits\ValidatesRequests;
 
 class Controller
 {
-    use Upload;
+    use ValidatesRequests;
 
     public function view(string $view, $data = [])
     {
