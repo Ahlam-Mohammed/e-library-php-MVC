@@ -1,18 +1,20 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controllers;
 
-class HomeController
+use Config\Controller;
+
+class HomeController extends Controller
 {
     public function index()
     {
-//        echo "Hello Word";
-        require_once "resources/views/index.php";
+        $data = ['a'=>'ahlam'];
+        $this->view('index', $data);
     }
 
     public function about()
     {
-        echo "about page";
+
     }
 
     public function contact()

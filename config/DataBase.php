@@ -1,7 +1,12 @@
 <?php
 
-class DB {
+namespace Config;
 
+use PDO;
+use PDOException;
+
+class DataBase
+{
     const HOSTNAME = 'localhost';
     const USERNAME = 'root';
     const PASSWORD = '';
@@ -27,9 +32,9 @@ class DB {
 
     public $result;
 
-    public function __construct() 
+    public function __construct()
     {
-        try 
+        try
         {
             $this->conn = new PDO("mysql:host=".self::HOSTNAME.";dbname=".self::DATABASE."", self::USERNAME, self::PASSWORD);
         }
@@ -38,19 +43,25 @@ class DB {
         }
     }
 
+    public function creatDatabase($nameDatabase)
+    {
+        $sql = "CREATE DATABASE IF NOT EXISTS $nameDatabase";
+        $this->conn->prepare($sql)->execute();
+    }
+
     public function get()
     {
         $this->initializStm();
 
-        $sql = "SELECT ". $this-> columns . 
-                " FROM ". $this-> table_name 
-                        . $this-> join
-                        . $this-> leftJoin
-                        . $this-> rightJoin
-                        . $this-> condition 
-                        . $this-> groupBy
-                        . $this-> orderBy 
-                        . $this-> limit;
+        $sql = "SELECT ". $this-> columns .
+            " FROM ". $this-> table_name
+            . $this-> join
+            . $this-> leftJoin
+            . $this-> rightJoin
+            . $this-> condition
+            . $this-> groupBy
+            . $this-> orderBy
+            . $this-> limit;
 
         $stm = $this->conn->prepare($sql);
         echo $sql;
@@ -72,10 +83,10 @@ class DB {
         $this->initializStm();
 
         $sql = "UPDATE ". $this->table_name
-                        . " SET " 
-                        . $this->values 
-                        . $this-> condition;
-        
+            . " SET "
+            . $this->values
+            . $this-> condition;
+
         $this->conn->prepare($sql)->execute();
 
         $this->resetInput();
@@ -95,59 +106,59 @@ class DB {
     {
         $this->columnCount = $column;
         $this->duplicate   = $duplicate;
-        
+
         $this->initializStm();
 
         $sql = "SELECT COUNT (". $column ." )".
-                " FROM ". $this->table_name 
-                        . $this->condition 
-                        . $this->orderBy;
+            " FROM ". $this->table_name
+            . $this->condition
+            . $this->orderBy;
 
         $stm = $this->conn->prepare($sql);
         if ($stm->execute())
         {
             $this->result = $stm->fetchAll();
         }
-        
+
         $this->resetInput();
     }
 
-    public function table(string $table_name):DB
+    public function table(string $table_name):DataBase
     {
         $this->table_name = $table_name;
         return $this;
     }
 
-    public function select(string ...$column_name):DB
+    public function select(string ...$column_name):DataBase
     {
         $this->columns = $column_name;
         return $this;
     }
 
-    public function orderBy(string $order, string ...$column_name):DB
+    public function orderBy(string $order, string ...$column_name):DataBase
     {
         $this->orderBy = implode(',', $column_name) . " $order";
         return $this;
     }
 
-    public function groupBy(string ...$column_name):DB
+    public function groupBy(string ...$column_name):DataBase
     {
         $this->groupBy = implode(',', $column_name);
         return $this;
     }
 
-    public function where(string $column_name, string $opreation, $value):DB
+    public function where(string $column_name, string $opreation, $value):DataBase
     {
         $condition = $column_name . " " . $opreation . "  '$value'";
 
         $this->condition === null ?
-            $this->condition = $condition :  
+            $this->condition = $condition :
             $this->condition .= ' AND ' . $condition;
 
         return $this;
     }
 
-    public function orWhere(string $column, string $opreation, $value):DB
+    public function orWhere(string $column, string $opreation, $value):DataBase
     {
         $condition = $column . " " . $opreation . "  '$value'";
         $this->condition = $this->condition . ' OR ' . $condition;
@@ -155,13 +166,13 @@ class DB {
         return $this;
     }
 
-    public function value(...$values):DB
+    public function value(...$values):DataBase
     {
         $this->values []= $values;
         return $this;
     }
 
-    public function limit($number, $to = null):DB
+    public function limit($number, $to = null):DataBase
     {
         $toRecord = $to === null ? '' : ",$to";
         $this->limit = "$number".$toRecord;
@@ -169,19 +180,19 @@ class DB {
         return $this;
     }
 
-    public function leftJoin(string $table_name, $FK, $PK):DB
+    public function leftJoin(string $table_name, $FK, $PK):DataBase
     {
         $this->leftJoin = " LEFT JOIN  $table_name  ON  $FK  =  $PK";
         return $this;
     }
 
-    public function rightJoin(string $table_name, $FK, $PK):DB
+    public function rightJoin(string $table_name, $FK, $PK):DataBase
     {
         $this->rightJoin = " RIGHT JOIN  $table_name  ON  $FK  =  $PK";
         return $this;
     }
 
-    public function join(string $table_name, $FK, $PK):DB
+    public function join(string $table_name, $FK, $PK):DataBase
     {
         $this->join = " JOIN  $table_name  ON  $FK  =  $PK";
         return $this;

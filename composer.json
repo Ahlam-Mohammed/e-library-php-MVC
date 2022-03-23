@@ -3,8 +3,9 @@
     "description": "e-library",
     "autoload": {
         "psr-4": {
-            "App\\": "config/",
-            "App\\Controller\\": "app/controllers/"
+            "App\\Controllers\\": "app/controllers/",
+            "App\\Traits\\": "app/Traits/",
+            "Config\\": "config/"
         }
     },
     "minimum-stability": "stable",
@@ -14,5 +15,7 @@
             "email": "ahlam.m.alfashq@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }
