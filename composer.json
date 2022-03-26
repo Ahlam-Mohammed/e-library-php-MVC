@@ -3,10 +3,12 @@
     "description": "e-library",
     "autoload": {
         "psr-4": {
-            "App\\Controllers\\": "app/controllers/",
-            "App\\Traits\\": "app/Traits/",
-            "Config\\": "config/"
+            "App\\": "app/",
+            "App\\Config\\": "config/"
         }
+    },
+    "scripts": {
+        "serve": "php -S localhost:8000 -t public"
     },
     "minimum-stability": "stable",
     "authors": [
@@ -16,6 +18,7 @@
         }
     ],
     "require": {
-      "ext-pdo": "*"
+        "ext-pdo": "*",
+        "vlucas/phpdotenv": "^5.4"
     }
 }

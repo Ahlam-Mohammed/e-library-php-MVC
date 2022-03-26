@@ -1,6 +1,6 @@
 <?php
 
-namespace Config;
+namespace App\Config;
 use App\Traits\ValidatesRequests;
 
 class Controller
@@ -9,6 +9,6 @@ class Controller
 
     public function view(string $view, $data = [])
     {
-        require_once "resources/views/" . $view . ".php";
+        require_once "../resources/views/" . $view . ".php";
     }
 }

@@ -1,41 +1,41 @@
 <?php
 
-namespace Config;
+namespace App\Config;
 
-class Router
+class Route
 {
-    private $handlers = [];
-    private $notFoundHandler;
+    private static $handlers = [];
+    private static $notFoundHandler;
 
     const METHOD_POST = 'POST';
     const METHOD_GET  = 'GET';
 
 
-    public function get(string $path, $handler)
+    public static function get(string $path, $handler)
     {
-        $this->addHandler(self::METHOD_GET, $path, $handler);
+        self::addHandler(self::METHOD_GET, $path, $handler);
     }
 
-    public function post(string $path, $handler)
+    public static function post(string $path, $handler)
     {
-        $this->addHandler(self::METHOD_POST, $path, $handler);
+        self::addHandler(self::METHOD_POST, $path, $handler);
     }
 
-    private function addHandler(string $method, string  $path, $handler)
+    private static function addHandler(string $method, string  $path, $handler)
     {
-        $this->handlers[$method . $path] = [
+        self::$handlers[$method . $path] = [
             'path'    => $path,
             'method'  => $method,
             'handler' => $handler
         ];
     }
 
-    public function notFoundHandler($handler)
+    public static function notFoundHandler($handler)
     {
-        $this->notFoundHandler = $handler;
+        self::$notFoundHandler = $handler;
     }
 
-    public function run()
+    public static function run()
     {
         $requestUri  = parse_url($_SERVER['REQUEST_URI']);
         $requestPath = $requestUri['path'];
@@ -43,7 +43,7 @@ class Router
 
         $callback = null;
 
-        foreach ($this->handlers as $handler)
+        foreach (self::$handlers as $handler)
         {
             if ($handler['path'] === $requestPath && $handler['method'] === $method)
             {
@@ -60,8 +60,8 @@ class Router
         }
 
         if (!$callback) {
-            if (!empty($this->notFoundHandler)) {
-                $callback = $this->notFoundHandler;
+            if (!empty(self::$notFoundHandler)) {
+                $callback = self::$notFoundHandler;
             }
         }
 

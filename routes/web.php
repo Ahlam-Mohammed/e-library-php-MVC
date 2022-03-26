@@ -1,19 +1,10 @@
 <?php
 
-require_once __DIR__ . '../vendor/autoload.php';
-
+use App\Config\Route;
 use App\Controllers\HomeController;
-use App\Router;
-
-$router = new Router();
-
-$router->get('/', [HomeController::class, 'index']);
-$router->get('/about', [HomeController::class, 'about']);
-$router->get('/contact', [HomeController::class, 'contact']);
 
 
-$router->notFoundHandler(function () {
-    echo "Page Not Found";
-});
-
-$router->run();
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/details', [HomeController::class, 'details']);
+Route::get('/cart', [HomeController::class, 'cart']);
+Route::get('/category', [HomeController::class, 'category']);
