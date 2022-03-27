@@ -7,7 +7,7 @@ class migrate_0003_create_books_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `books` (
-                    `id` INT(11) NOT NULL,
+                    `id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `title` VARCHAR(255) NOT NULL,
                     `image` VARCHAR(255) NOT NULL,
                     `price` DOUBLE NOT NULL,

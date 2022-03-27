@@ -7,7 +7,7 @@ class migrate_0014_create_user_profiles_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `user_profiles` (
-                    `id` INT(3) NOT NULL,
+                    `id` INT(3) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `image` VARCHAR(255) NOT NULL,
                     `phone` VARCHAR(255) NOT NULL,
                     `address` VARCHAR(255) NOT NULL,

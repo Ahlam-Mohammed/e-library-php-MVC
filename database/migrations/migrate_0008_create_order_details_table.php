@@ -7,7 +7,7 @@ class migrate_0008_create_order_details_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `order_details` (
-                    `id` INT(2) NOT NULL,
+                    `id` INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `order_id` INT(2) NOT NULL,
                     `book_id` INT(2) NOT NULL,
                     `quantity` INT(2) NOT NULL,

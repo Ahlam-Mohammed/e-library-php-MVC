@@ -7,7 +7,7 @@ class migrate_0013_create_user_payment_methods_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `user_payment_methods` (
-                    `id` INT(2) NOT NULL,
+                    `id` INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `user_id` INT(2) NOT NULL,
                     `payment_id` INT(2) NOT NULL,
                     `is_active` TINYINT(4) NOT NULL,

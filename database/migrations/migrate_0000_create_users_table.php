@@ -8,7 +8,7 @@ class migrate_0000_create_users_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `users` (
-                    `id` INT(5) NOT NULL,
+                    `id` INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `name` VARCHAR(255) NOT NULL,
                     `email` VARCHAR(255) NOT NULL,
                     `password` VARCHAR(255) NOT NULL,

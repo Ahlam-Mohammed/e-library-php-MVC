@@ -7,7 +7,7 @@ class migrate_0006_create_offers_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `offers` (
-                    `id` INT(11) NOT NULL,
+                    `id` INT(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `title` VARCHAR(255) NOT NULL,
                     `discount` DOUBLE NOT NULL,
                     `start_date` DATE DEFAULT NULL,

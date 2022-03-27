@@ -7,7 +7,7 @@ class migrate_0012_create_user_addresses_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `user_addresses` (
-                    `id` INT(2) NOT NULL,
+                    `id` INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `user_id` INT(2) NOT NULL,
                     `city_id` INT(2) NOT NULL,
                     `address` VARCHAR(255) NOT NULL,

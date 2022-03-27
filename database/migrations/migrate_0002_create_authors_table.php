@@ -7,7 +7,7 @@ class migrate_0002_create_authors_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `authors` (
-                    `id` INT(5) NOT NULL,
+                    `id` INT(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `name` VARCHAR(255) NOT NULL,
                     `phone` VARCHAR(255) DEFAULT NULL,
                     `email` VARCHAR(255) DEFAULT NULL,

@@ -7,7 +7,7 @@ class migrate_0004_create_categories_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `categories` (
-                    `id` INT(2) NOT NULL,
+                    `id` INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `name` VARCHAR(255) NOT NULL,
                     `image` VARCHAR(255) NOT NULL,
                     `is_active` TINYINT(1) NOT NULL,

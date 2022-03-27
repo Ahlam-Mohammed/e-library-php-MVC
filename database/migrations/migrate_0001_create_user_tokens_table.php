@@ -7,7 +7,7 @@ class migrate_0001_create_user_tokens_table extends Database
     public function up()
     {
         $SQL = "CREATE TABLE IF NOT EXISTS `user_tokens` (
-                    `id` INT(2) NOT NULL,
+                    `id` INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `user_id` INT(2) NOT NULL,
                     `token` VARCHAR(255) NOT NULL,
                     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
