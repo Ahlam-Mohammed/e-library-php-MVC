@@ -35,4 +35,9 @@ class HomeController extends Controller
         $this->view('layouts/master', $content);
     }
 
+    public function dashboard()
+    {
+        $this->view('layouts/dashboard/master');
+    }
+
 }
