@@ -45,12 +45,12 @@ class Model extends Database
         if ($stm->execute())
         {
             $this->result = $stm->fetchAll();
-            $this->resetInput();
+//            $this->resetInput();
         }
         else
         {
             $this->result = "error";
-            $this->resetInput();
+//            $this->resetInput();
         }
         return $this->result;
     }
@@ -88,9 +88,21 @@ class Model extends Database
         $this->pdo->prepare($sql)->execute();
     }
 
-    public function delete()
+    public function UpdateIsActive(): bool
     {
-        $sgl = "DELETE FROM $this->table_name WHERE $this->condition";
+        $this->select('is_active')->get();
+        $is_active = $this->result[0]['is_active'] === 0 ? 1 : 0;
+        $sql = "UPDATE ".
+                $this->table_name.
+                " SET is_active = ". $is_active .
+                $this->condition;
+        return $this->pdo->prepare($sql)->execute();
+    }
+
+    public function delete(): bool
+    {
+        $sql = "DELETE FROM $this->table_name WHERE $this->condition";
+        return $this->pdo->prepare($sql)->execute();
     }
 
     public function count(string $column = null , bool $duplicate = true)

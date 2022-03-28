@@ -17,9 +17,11 @@ Route::get('/dashboard',[HomeController::class, 'dashboard']);
 Route::get('/dashboard-books', [BookController::class, 'index']);
 Route::get('/dashboard-books-create', [BookController::class, 'create']);
 Route::post('/dashboard-books-store', [BookController::class, 'store']);
+Route::get('/dashboard-books-show', [BookController::class, 'show']);
 Route::get('/dashboard-books-edit', [BookController::class, 'edit']);
 Route::post('/dashboard-books-update', [BookController::class, 'update']);
-//Route::post('/dashboard-books-delete', [BookController::class, 'delete']);
+Route::get('/dashboard-books-delete', [BookController::class, 'delete']);
+Route::get('/dashboard-books-active', [BookController::class, 'updateIsActive']);
 
 ///////// Category Routes /////////
 Route::get('/dashboard-categories', [CategoryController::class, 'index']);

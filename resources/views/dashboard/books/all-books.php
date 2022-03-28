@@ -17,19 +17,19 @@
 
             <?php foreach ($data['books'] as $book) { ?>
                 <tr>
-                    <td><strong><?= $book['title'] ?></strong></td>
+                    <td><strong><a href="/dashboard-books-show?id=<?= $book['id'] ?>"><?= $book['title'] ?></a></strong></td>
                     <td><?= $book['description'] ?></td>
                     <td>
-                        <span class="badge <?php if($book['is_active'] === 1) echo 'bg-label-primary'; else echo 'bg-label-warning'?> me-1">
+                        <a href="/dashboard-books-active?id=<?= $book['id'] ?>" class="badge <?php if($book['is_active'] === 1) echo 'bg-label-primary'; else echo 'bg-label-warning'?> me-1">
                             <?php if($book['is_active'] === 1) echo 'Active'; else echo 'NotActive'?>
-                        </span>
+                        </a>
                     </td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="/dashboard-books-edit?id=<?= $book['id'] ?>"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
+                                <a class="dropdown-item" href="/dashboard-books-delete?id=<?= $book['id'] ?>"><i class="bx bx-trash me-1"></i> Delete</a>
                             </div>
                         </div>
                     </td>
