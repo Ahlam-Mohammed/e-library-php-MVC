@@ -9,6 +9,8 @@ RewriteBase /
 # deliver the folder or file directly if it exists on the server
 RewriteCond %{REQUEST_FILE_NAME} !-d
 RewriteCond %{REQUEST_FILE_NAME} !-f
+RewriteCond %{REQUEST_FILE_NAME} !.(css|js|png|jpg|jpeg|json|svg|webp)$
+
 
 # push every request to index.php
 RewriteRule ^(.+)$ public/index.php?url=$1 [QSA,l]

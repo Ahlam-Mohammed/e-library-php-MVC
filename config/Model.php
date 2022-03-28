@@ -6,7 +6,7 @@ class Model extends Database
 {
     private $table_name;
     private $columns    = [];
-    private $values     = [];
+    private $values;
 
     private $condition;
     private $limit;
@@ -22,10 +22,9 @@ class Model extends Database
 
     public $result;
 
-    public function creatDatabase($nameDatabase)
+    public function __construct()
     {
-        $sql = "CREATE DATABASE IF NOT EXISTS $nameDatabase";
-        $this->pdo->prepare($sql)->execute();
+        parent::__construct();
     }
 
     public function get()
@@ -43,7 +42,6 @@ class Model extends Database
             . $this-> limit;
 
         $stm = $this->pdo->prepare($sql);
-        echo $sql;
         if ($stm->execute())
         {
             $this->result = $stm->fetchAll();
@@ -54,6 +52,7 @@ class Model extends Database
             $this->result = "error";
             $this->resetInput();
         }
+        return $this->result;
     }
 
     public function update()
@@ -62,13 +61,19 @@ class Model extends Database
         $this->initializStm();
 
         $sql = "UPDATE ". $this->table_name
-            . " SET "
-            . $this->values
-            . $this-> condition;
+                        . " SET "
+                        . $this->values
+                        . $this-> condition;
 
-        $this->pdo->prepare($sql)->execute();
+        if ($this->pdo->prepare($sql)->execute()){
+            $this->resetInput();
+            return true;
+        }
+        else{
+            $this->resetInput();
+            return false;
+        }
 
-        $this->resetInput();
     }
 
     public function create($data = array())
@@ -78,7 +83,14 @@ class Model extends Database
 
         $sql = "INSERT INTO $this->table_name ($table_columns) VALUES ('$table_values')";
 
+        echo $sql;
+
         $this->pdo->prepare($sql)->execute();
+    }
+
+    public function delete()
+    {
+        $sgl = "DELETE FROM $this->table_name WHERE $this->condition";
     }
 
     public function count(string $column = null , bool $duplicate = true)
@@ -102,31 +114,31 @@ class Model extends Database
         $this->resetInput();
     }
 
-    public function table(string $table_name):DataBase
+    public function table(string $table_name):Model
     {
         $this->table_name = $table_name;
         return $this;
     }
 
-    public function select(string ...$column_name):DataBase
+    public function select(string ...$column_name):Model
     {
         $this->columns = $column_name;
         return $this;
     }
 
-    public function orderBy(string $order, string ...$column_name):DataBase
+    public function orderBy(string $order, string ...$column_name):Model
     {
         $this->orderBy = implode(',', $column_name) . " $order";
         return $this;
     }
 
-    public function groupBy(string ...$column_name):DataBase
+    public function groupBy(string ...$column_name):Model
     {
         $this->groupBy = implode(',', $column_name);
         return $this;
     }
 
-    public function where(string $column_name, string $opreation, $value):DataBase
+    public function where(string $column_name, string $opreation, $value):Model
     {
         $condition = $column_name . " " . $opreation . "  '$value'";
 
@@ -137,7 +149,7 @@ class Model extends Database
         return $this;
     }
 
-    public function orWhere(string $column, string $opreation, $value):DataBase
+    public function orWhere(string $column, string $opreation, $value):Model
     {
         $condition = $column . " " . $opreation . "  '$value'";
         $this->condition = $this->condition . ' OR ' . $condition;
@@ -145,13 +157,20 @@ class Model extends Database
         return $this;
     }
 
-    public function value(...$values):DataBase
+    public function value($data = array()):Model
     {
-        $this->values []= $values;
+        $param = array();
+
+        foreach ($data as $key => $value)
+        {
+            $param [] = "$key = '$value'";
+        }
+
+        $this->values = implode(',',$param);
         return $this;
     }
 
-    public function limit($number, $to = null):DataBase
+    public function limit($number, $to = null):Model
     {
         $toRecord = $to === null ? '' : ",$to";
         $this->limit = "$number".$toRecord;
@@ -159,19 +178,19 @@ class Model extends Database
         return $this;
     }
 
-    public function leftJoin(string $table_name, $FK, $PK):DataBase
+    public function leftJoin(string $table_name, $FK, $PK):Model
     {
         $this->leftJoin = " LEFT JOIN  $table_name  ON  $FK  =  $PK";
         return $this;
     }
 
-    public function rightJoin(string $table_name, $FK, $PK):DataBase
+    public function rightJoin(string $table_name, $FK, $PK):Model
     {
         $this->rightJoin = " RIGHT JOIN  $table_name  ON  $FK  =  $PK";
         return $this;
     }
 
-    public function join(string $table_name, $FK, $PK):DataBase
+    public function join(string $table_name, $FK, $PK):Model
     {
         $this->join = " JOIN  $table_name  ON  $FK  =  $PK";
         return $this;
@@ -182,7 +201,6 @@ class Model extends Database
         $this->table_name = $this->table_name === null ? ''  : $this->table_name;
 
         $this->columns    = $this->columns    === [] ? '*' : implode(', ', $this->columns);
-        $this->values     = $this->values     === [] ? ''  : implode(', ', $this->values);
 
         $this->join      = $this->join      === null ? '' : $this->join;
         $this->rightJoin = $this->rightJoin === null ? '' : $this->rightJoin;
@@ -201,7 +219,7 @@ class Model extends Database
     {
         $this->table_name = null;
         $this->columns    = [];
-        $this->values     = [];
+        $this->values     = null;
 
         $this->join      = null;
         $this->rightJoin = null;
