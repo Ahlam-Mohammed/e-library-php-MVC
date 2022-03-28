@@ -24,6 +24,21 @@ class BookController extends Controller
         $this->view('layouts/dashboard/master', $data);
     }
 
+    public function show()
+    {
+        $book = Book::find($_GET['id']);
+
+        $data = [
+            'content'    => $this->getPathOfBook('show-book'),
+            'book'       => $book,
+            'category'   => Category::find($book[0]['category_id']),
+            'author'     => Author::find($book[0]['author_id']),
+            'publisher'  => Publisher::find($book[0]['publisher_id'])
+        ];
+
+        $this->view($this->getPathDashboard(), $data);
+    }
+
     public function create()
     {
         $data = [
@@ -74,10 +89,7 @@ class BookController extends Controller
             unset($arrayData['oldImage']);
             $arrayDate = array_merge($arrayData, ['image' => $this->new_file_name]);
 
-            Book::updated($arrayDate,$id) ;
-//            === true ?
-//                $session = ['success' => 'Updated Book successful'] :
-//                $session = ['danger'  => 'oops update error'];
+            Book::updated($arrayDate,$id);
 
             $this->redirect('dashboard-books');
         }
@@ -85,7 +97,14 @@ class BookController extends Controller
 
     public function delete()
     {
+        Book::deleted($_GET['id']);
+        $this->redirect('dashboard-books');
+    }
 
+    public function updateIsActive()
+    {
+        Book::updateActive($_GET['id']);
+        $this->redirect('dashboard-books');
     }
 
     private function getPathDashboard(): string

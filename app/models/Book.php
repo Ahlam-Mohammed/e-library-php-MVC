@@ -33,9 +33,17 @@ class Book extends Model
                     ->update();
     }
 
-//    public function delete($id)
-//    {
-//        return (new Model())->table(self::TABLE_NAME)
-//                            ->delete();
-//    }
+    public static function deleted($id): bool
+    {
+        return (new Model())->table(self::TABLE_NAME)
+                            ->where('id', '=', $id)
+                            ->delete();
+    }
+
+    public static function updateActive($id): bool
+    {
+        return (new Model())->table(self::TABLE_NAME)
+                            ->where('id', '=', $id)
+                            ->UpdateIsActive();
+    }
 }
