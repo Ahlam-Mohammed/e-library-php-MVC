@@ -57,6 +57,12 @@
                 <div>Books Manager</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="/dashboard-categories" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>Categories Manager</div>
+            </a>
+        </li>
 
     </ul>
 
