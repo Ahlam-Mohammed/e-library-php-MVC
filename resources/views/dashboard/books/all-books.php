@@ -1,7 +1,12 @@
 <div class="card">
     <div class="d-flex justify-content-between align-items-center p-3">
-        <h5 class="card-header">Table Basic</h5>
-        <a href="/dashboard-books-create" class="btn btn-primary inline w-25">Create</a>
+        <h5 class="card-header">Books</h5>
+        <a href="/dashboard-books-create" class="dt-button inline create-new btn btn-primary" type="button">
+            <span>
+                <i class="bx bx-plus me-sm-2"></i>
+                <span class="d-none d-sm-inline-block">Add New Book</span>
+            </span>
+        </a>
     </div>
     <div class="table-responsive text-nowrap">
         <table class="table">

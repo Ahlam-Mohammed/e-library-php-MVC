@@ -8,24 +8,25 @@ $publisher = $data['publisher'];
 ?>
 
 <div class="row">
-    <div class="col-lg-9 col-12">
+    <div class="col-lg-8 col-12">
         <div class="card h-100">
-            <div class="card-body">
+            <div class="card-body position-relative">
                 <h5 class="card-title"><?= $book[0]['title'] ?></h5>
-                <a href="/dashboard-books-active?id=<?= $book[0]['id'] ?>" class="badge <?php if($book[0]['is_active'] === 1) echo 'bg-label-primary'; else echo 'bg-label-warning'?> me-1">
+                <h6 class="card-subtitle text-muted mb-5"><?= $book[0]['created_at'] ?></h6>
+                <a href="/dashboard-books-active?id=<?= $book[0]['id'] ?>" class="position-absolute badge <?php if($book[0]['is_active'] === 1) echo 'bg-label-primary'; else echo 'bg-label-warning'?> me-1" style="top: 4%; right: 4%">
                     <?php if($book[0]['is_active'] === 1) echo 'Active'; else echo 'NotActive'?>
                 </a>
                 <img class="img-fluid d-flex mx-auto my-4" src="/uploads/<?= $book[0]['image'] ?>" alt="Card image cap">
                 <p class="card-text"><?= $book[0]['description'] ?></p>
-                <h6 class="card-subtitle text-muted mb-5"><?= $book[0]['created_at'] ?></h6>
                 <a href="/dashboard-books-edit?id=<?= $book[0]['id'] ?>" class="card-link">Edit</a>
                 <a href="/dashboard-books-delete?id=<?= $book[0]['id'] ?>" class="card-link">Delete</a>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-12">
+    <div class="col-lg-4 col-12">
         <div class="card">
             <div class="card-body">
+                <h5 class="card-title">Book Details</h5><hr>
                 <ul class="p-0 m-0">
                     <li class="d-flex mb-4 pb-1">
                         <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
