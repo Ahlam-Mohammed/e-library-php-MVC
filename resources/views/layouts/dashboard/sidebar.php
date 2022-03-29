@@ -52,6 +52,12 @@
     <ul class="menu-inner py-1">
 
         <li class="menu-item">
+            <a href="/dashboard-users" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>Users Manager</div>
+            </a>
+        </li>
+        <li class="menu-item">
             <a href="/dashboard-books" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div>Books Manager</div>

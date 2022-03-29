@@ -7,9 +7,20 @@ use App\Controllers\CategoryController;
 use App\Controllers\CityController;
 use App\Controllers\HomeController;
 use App\Controllers\PublisherController;
+use App\Controllers\UserController;
 
 
 Route::get('/', [HomeController::class, 'index']);
+
+///////// Book Routes /////////
+Route::get('/dashboard-users', [UserController::class, 'index']);
+Route::get('/dashboard-users-create', [UserController::class, 'create']);
+Route::post('/dashboard-users-store', [UserController::class, 'store']);
+Route::get('/dashboard-users-show', [UserController::class, 'show']);
+Route::get('/dashboard-users-edit', [UserController::class, 'edit']);
+Route::post('/dashboard-users-update', [UserController::class, 'update']);
+Route::get('/dashboard-users-delete', [UserController::class, 'delete']);
+Route::get('/dashboard-users-active', [UserController::class, 'updateIsActive']);
 
 ///////// Book Routes /////////
 Route::get('/dashboard-books', [BookController::class, 'index']);
