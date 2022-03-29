@@ -69,6 +69,18 @@
                 <div>Authors Manager</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="/dashboard-publishers" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>Publishers Manager</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="/dashboard-cities" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>Cities Manager</div>
+            </a>
+        </li>
 
     </ul>
 
