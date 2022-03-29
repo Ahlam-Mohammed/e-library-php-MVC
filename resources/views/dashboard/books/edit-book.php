@@ -29,6 +29,9 @@
                     <div class="row">
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-country">Category</label>
+                            <a href="/dashboard-categories-create">
+                                <i class="bx bx-plus me-sm-2 text-primary"></i>
+                            </a>
                             <select name="category_id" class="form-select" id="bs-validation-country" required>
                                 <?php foreach ($data['categories'] as $category){ ?>
                                     <option <?php if ($book[0]['category_id'] === $category['id']) echo "selected"?> value="<?= $category['id'] ?>">
@@ -40,6 +43,9 @@
                         </div>
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-country">Author</label>
+                            <a href="/dashboard-authors-create">
+                                <i class="bx bx-plus me-sm-2 text-primary"></i>
+                            </a>
                             <select name="author_id" class="form-select" id="bs-validation-country" required>
                                 <?php foreach ($data['authors'] as $author){ ?>
                                     <option <?php if ($book[0]['author_id'] === $author['id']) echo "selected"?> value="<?= $author['id'] ?>">
@@ -61,6 +67,9 @@
                         </div>
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-country">Publisher</label>
+                            <a href="/dashboard-publishers-create">
+                                <i class="bx bx-plus me-sm-2 text-primary"></i>
+                            </a>
                             <select name="publisher_id" class="form-select" id="bs-validation-country" required>
                                 <option selected>Select Publisher</option>
                                 <?php foreach ($data['publishers'] as $publisher){ ?>

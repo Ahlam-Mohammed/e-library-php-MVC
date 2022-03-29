@@ -29,8 +29,11 @@
                     <div class="row">
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-country">Category</label>
+                            <a href="/dashboard-categories-create">
+                                <i class="bx bx-plus me-sm-2 text-primary"></i>
+                            </a>
                             <select name="category_id" class="form-select" id="bs-validation-country" required>
-                                <option selected>Select Category</option>
+                                <option disabled selected>Select Category</option>
                                 <?php foreach ($data['categories'] as $category){ ?>
                                     <option value="<?= $category['id'] ?>">
                                         <?= $category['name'] ?>
@@ -42,8 +45,11 @@
                         </div>
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-country">Author</label>
+                            <a href="/dashboard-authors-create">
+                                <i class="bx bx-plus me-sm-2 text-primary"></i>
+                            </a>
                             <select name="author_id" class="form-select" id="bs-validation-country" required>
-                                <option selected>Select Author</option>
+                                <option disabled selected>Select Author</option>
                                 <?php foreach ($data['authors'] as $author){ ?>
                                     <option value="<?= $author['id'] ?>">
                                         <?= $author['name'] ?>
@@ -65,8 +71,11 @@
                         </div>
                         <div class="col-6">
                             <label class="form-label" for="bs-validation-country">Publisher</label>
+                            <a href="/dashboard-publishers-create">
+                                <i class="bx bx-plus me-sm-2 text-primary"></i>
+                            </a>
                             <select name="publisher_id" class="form-select" id="bs-validation-country" required>
-                                <option selected>Select Publisher</option>
+                                <option disabled selected>Select Publisher</option>
                                 <?php foreach ($data['publishers'] as $publisher){ ?>
                                     <option value="<?= $publisher['id'] ?>">
                                         <?= $publisher['name'] ?>
