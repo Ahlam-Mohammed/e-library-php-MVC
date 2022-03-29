@@ -6,13 +6,14 @@ use App\Controllers\BookController;
 use App\Controllers\CategoryController;
 use App\Controllers\CityController;
 use App\Controllers\HomeController;
+use App\Controllers\OfferController;
 use App\Controllers\PublisherController;
 use App\Controllers\UserController;
 
 
 Route::get('/', [HomeController::class, 'index']);
 
-///////// Book Routes /////////
+///////// User Routes /////////
 Route::get('/dashboard-users', [UserController::class, 'index']);
 Route::get('/dashboard-users-create', [UserController::class, 'create']);
 Route::post('/dashboard-users-store', [UserController::class, 'store']);
@@ -71,3 +72,13 @@ Route::get('/dashboard-cities-edit', [CityController::class, 'edit']);
 Route::post('/dashboard-cities-update', [CityController::class, 'update']);
 Route::get('/dashboard-cities-delete', [CityController::class, 'delete']);
 Route::get('/dashboard-cities-active', [CityController::class, 'updateIsActive']);
+
+///////// Offer Routes /////////
+Route::get('/dashboard-offers', [OfferController::class, 'index']);
+Route::get('/dashboard-offers-create', [OfferController::class, 'create']);
+Route::post('/dashboard-offers-store', [OfferController::class, 'store']);
+Route::get('/dashboard-offers-show', [OfferController::class, 'show']);
+Route::get('/dashboard-offers-edit', [OfferController::class, 'edit']);
+Route::post('/dashboard-offers-update', [OfferController::class, 'update']);
+Route::get('/dashboard-offers-delete', [OfferController::class, 'delete']);
+Route::get('/dashboard-offers-active', [OfferController::class, 'updateIsActive']);
