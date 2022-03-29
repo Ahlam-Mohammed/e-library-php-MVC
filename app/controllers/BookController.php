@@ -21,7 +21,7 @@ class BookController extends Controller
             'books'   => Book::all()
         ];
 
-        $this->view('layouts/dashboard/master', $data);
+        $this->view($this->getPathDashboard(), $data);
     }
 
     public function show()

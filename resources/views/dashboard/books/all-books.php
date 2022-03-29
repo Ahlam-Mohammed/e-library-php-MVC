@@ -1,3 +1,7 @@
+<?php
+use App\Models\Author;
+use App\Models\Category;
+?>
 <div class="card">
     <div class="d-flex justify-content-between align-items-center p-3">
         <h5 class="card-header">Books</h5>
@@ -14,6 +18,8 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Category</th>
+                <th>Author</th>
                 <th>Active</th>
                 <th>Actions</th>
             </tr>
@@ -24,6 +30,8 @@
                 <tr>
                     <td><strong><a href="/dashboard-books-show?id=<?= $book['id'] ?>"><?= $book['title'] ?></a></strong></td>
                     <td><?= $book['description'] ?></td>
+                    <td><?php $category = Category::find($book['category_id']); echo $category[0]['name'] ?></td>
+                    <td><?php $author = Author::find($book['author_id']); echo $author[0]['name'] ?></td>
                     <td>
                         <a href="/dashboard-books-active?id=<?= $book['id'] ?>" class="badge <?php if($book['is_active'] === 1) echo 'bg-label-primary'; else echo 'bg-label-warning'?> me-1">
                             <?php if($book['is_active'] === 1) echo 'Active'; else echo 'NotActive'?>

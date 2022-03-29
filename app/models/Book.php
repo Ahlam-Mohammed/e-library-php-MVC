@@ -22,27 +22,27 @@ class Book extends Model
 
     public static function created($data)
     {
-        (new Model)->table(self::TABLE_NAME)->create($data);
+        (new Book())->table(self::TABLE_NAME)->create($data);
     }
 
     public static function updated($data, $id)
     {
-        return (new Model) ->table(self::TABLE_NAME)
-                    ->value($data)
-                    ->where('id', '=',$id)
-                    ->update();
+        return (new Book()) ->table(self::TABLE_NAME)
+                            ->value($data)
+                            ->where('id', '=',$id)
+                            ->update();
     }
 
     public static function deleted($id): bool
     {
-        return (new Model())->table(self::TABLE_NAME)
+        return (new Book()) ->table(self::TABLE_NAME)
                             ->where('id', '=', $id)
                             ->delete();
     }
 
     public static function updateActive($id): bool
     {
-        return (new Model())->table(self::TABLE_NAME)
+        return (new Book()) ->table(self::TABLE_NAME)
                             ->where('id', '=', $id)
                             ->UpdateIsActive();
     }
