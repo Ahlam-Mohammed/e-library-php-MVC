@@ -5,10 +5,10 @@
 ```php
 # 1️⃣ Create database (e-library)
 
-#2️⃣ Run command line ⬇
+# 2️⃣ Run command line ⬇
 php migrations.php
 
-#3️⃣ Run the project
+# 3️⃣ Run the project
 composer serv
 ```
 
