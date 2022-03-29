@@ -18,8 +18,8 @@ class migrate_0003_create_books_table extends Database
                     `publisher_id` INT(3) NOT NULL,
                     `quantity` INT(2) NOT NULL,
                     `format` VARCHAR(255) NOT NULL,
-                    `created_by` INT(3) NOT NULL,
-                    `is_active` TINYINT(1) NOT NULL,
+                    `created_by` INT(3) DEFAULT NULL,
+                    `is_active` TINYINT(1) NOT NULL DEFAULT 1,
                     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
                     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
                 ) ENGINE=INNODB";

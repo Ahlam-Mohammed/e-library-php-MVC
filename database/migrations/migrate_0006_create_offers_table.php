@@ -15,8 +15,8 @@ class migrate_0006_create_offers_table extends Database
                     `book_ids` VARCHAR(255) DEFAULT NULL,
                     `category_ids` VARCHAR(255) DEFAULT NULL,
                     `all_books` TINYINT(1) DEFAULT NULL,
-                    `is_active` TINYINT(1) NOT NULL,
-                    `created_by` INT(2) NOT NULL,
+                    `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+                    `created_by` INT(2) DEFAULT NULL,
                     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
                     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
             ) ENGINE=INNODB";

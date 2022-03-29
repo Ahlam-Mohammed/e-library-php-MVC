@@ -10,7 +10,7 @@ class migrate_0013_create_user_payment_methods_table extends Database
                     `id` INT(2) NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     `user_id` INT(2) NOT NULL,
                     `payment_id` INT(2) NOT NULL,
-                    `is_active` TINYINT(4) NOT NULL,
+                    `is_active` TINYINT(4) NOT NULL DEFAULT 1,
                     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
                     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP()
                 ) ENGINE=INNODB";

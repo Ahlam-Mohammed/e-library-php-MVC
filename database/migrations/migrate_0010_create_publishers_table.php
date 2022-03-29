@@ -17,7 +17,7 @@ class migrate_0010_create_publishers_table extends Database
                     `country` VARCHAR(255) NOT NULL,
                     `image` VARCHAR(255) DEFAULT NULL,
                     `is_active` TINYINT(1) NOT NULL DEFAULT 1,
-                    `created_by` INT(2) NOT NULL,
+                    `created_by` INT(2) DEFAULT NULL,
                     `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
                     `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
                 ) ENGINE=INNODB";

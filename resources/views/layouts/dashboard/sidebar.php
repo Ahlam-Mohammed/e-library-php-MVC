@@ -96,7 +96,7 @@
         <li class="menu-item">
             <a href="/dashboard-userPayment" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div>User Payment Method Manager</div>
+                <div>User Payment Method</div>
             </a>
         </li>
 
