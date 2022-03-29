@@ -87,6 +87,12 @@
                 <div>Cities Manager</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="/dashboard-offers" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>Offers Manager</div>
+            </a>
+        </li>
 
     </ul>
 
