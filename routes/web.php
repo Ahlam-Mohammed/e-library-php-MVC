@@ -9,6 +9,7 @@ use App\Controllers\HomeController;
 use App\Controllers\OfferController;
 use App\Controllers\PublisherController;
 use App\Controllers\UserController;
+use App\Controllers\UserPaymentController;
 
 
 Route::get('/', [HomeController::class, 'index']);
@@ -82,3 +83,13 @@ Route::get('/dashboard-offers-edit', [OfferController::class, 'edit']);
 Route::post('/dashboard-offers-update', [OfferController::class, 'update']);
 Route::get('/dashboard-offers-delete', [OfferController::class, 'delete']);
 Route::get('/dashboard-offers-active', [OfferController::class, 'updateIsActive']);
+
+///////// Offer Routes /////////
+Route::get('/dashboard-userPayment', [UserPaymentController::class, 'index']);
+Route::get('/dashboard-userPayment-create', [UserPaymentController::class, 'create']);
+Route::post('/dashboard-userPayment-store', [UserPaymentController::class, 'store']);
+Route::get('/dashboard-userPayment-show', [UserPaymentController::class, 'show']);
+Route::get('/dashboard-userPayment-edit', [UserPaymentController::class, 'edit']);
+Route::post('/dashboard-userPayment-update', [UserPaymentController::class, 'update']);
+Route::get('/dashboard-userPayment-delete', [UserPaymentController::class, 'delete']);
+Route::get('/dashboard-userPayment-active', [UserPaymentController::class, 'updateIsActive']);

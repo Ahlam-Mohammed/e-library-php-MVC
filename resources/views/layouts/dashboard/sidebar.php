@@ -93,6 +93,12 @@
                 <div>Offers Manager</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="/dashboard-userPayment" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>User Payment Method Manager</div>
+            </a>
+        </li>
 
     </ul>
 
