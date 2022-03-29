@@ -46,4 +46,12 @@ class Category extends Model
                                 ->where('id', '=', $id)
                                 ->UpdateIsActive();
     }
+
+    public static function books($id)
+    {
+        return (new Category()) -> table('books')
+                                -> where('category_id', '=', $id)
+                                -> where('is_active', '=', 1)
+                                -> get();
+    }
 }

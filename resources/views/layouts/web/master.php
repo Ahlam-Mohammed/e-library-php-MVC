@@ -14,10 +14,10 @@
 <body onload="offerDate()">
 
 <!-- navigation desktop -->
-<?php include __DIR__ . '../../components/web/navigation.php' ?>
+<?php include __DIR__ . '../../../components/web/navigation.php' ?>
 
 <!-- Header -->
-<?php include __DIR__ . '../../components/web/header.php' ?>
+<?php include __DIR__ . '../../../components/web/header.php' ?>
 
 <!-- banner -->
 <section>
@@ -60,20 +60,20 @@
 </section>
 
 <!-- Content -->
-<?php include $data ?>
+<?php include $data['content']; ?>
 
 
 <!-- footer -->
 <?php include 'footer.php' ?>
 
 <!-- login model -->
-<?php include __DIR__ . '../../components/web/login-model.php' ?>
+<?php include __DIR__ . '../../../components/web/login-model.php' ?>
 
 <!-- register model -->
-<?php include __DIR__ . '../../components/web/register-model.php' ?>
+<?php include __DIR__ . '../../../components/web/register-model.php' ?>
 
 <!-- image model -->
-<?php include __DIR__ . '../../components/web/display-image-model.php' ?>
+<?php include __DIR__ . '../../../components/web/display-image-model.php' ?>
 
 <?php include 'script.php' ?>
 </body>

@@ -1,6 +1,7 @@
 <?php
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Publisher;
 ?>
 <div class="card">
     <div class="d-flex justify-content-between align-items-center p-3">
@@ -17,7 +18,7 @@ use App\Models\Category;
             <thead>
             <tr>
                 <th>Title</th>
-                <th>Description</th>
+                <th>Publisher</th>
                 <th>Category</th>
                 <th>Author</th>
                 <th>Active</th>
@@ -29,7 +30,7 @@ use App\Models\Category;
             <?php foreach ($data['books'] as $book) { ?>
                 <tr>
                     <td><strong><a href="/dashboard-books-show?id=<?= $book['id'] ?>"><?= $book['title'] ?></a></strong></td>
-                    <td><?= $book['description'] ?></td>
+                    <td><?php $publisher = Publisher::find($book['publisher_id']); echo $publisher[0]['name'] ?></td>
                     <td><?php $category = Category::find($book['category_id']); echo $category[0]['name'] ?></td>
                     <td><?php $author = Author::find($book['author_id']); echo $author[0]['name'] ?></td>
                     <td>

@@ -3,41 +3,20 @@
 namespace App\Controllers;
 
 use App\Config\Controller;
+use App\Models\Book;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
 
     public function index()
     {
-        $content = '../resources/views/index.php';
+        $data = [
+            'content'     => __DIR__.'/../../resources/views/index.php',
+            'categories'  => Category::all()
+        ];
 
-        $this->view('layouts/master', $content);
-    }
-
-    public function details()
-    {
-        $content = '../resources/views/web/details.php';
-
-        $this->view('layouts/master', $content);
-    }
-
-    public function cart()
-    {
-        $content = '../resources/views/web/cart.php';
-
-        $this->view('layouts/master', $content);
-    }
-
-    public function category()
-    {
-        $content = '../resources/views/web/category.php';
-
-        $this->view('layouts/master', $content);
-    }
-
-    public function dashboard()
-    {
-        $this->view('layouts/dashboard/master');
+        $this->view('layouts/web/master', $data);
     }
 
 }
