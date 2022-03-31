@@ -7,6 +7,7 @@ use App\Controllers\CategoryController;
 use App\Controllers\CityController;
 use App\Controllers\HomeController;
 use App\Controllers\OfferController;
+use App\Controllers\PaymentController;
 use App\Controllers\PublisherController;
 use App\Controllers\UserController;
 use App\Controllers\UserPaymentController;
@@ -93,3 +94,14 @@ Route::get('/dashboard-userPayment-edit', [UserPaymentController::class, 'edit']
 Route::post('/dashboard-userPayment-update', [UserPaymentController::class, 'update']);
 Route::get('/dashboard-userPayment-delete', [UserPaymentController::class, 'delete']);
 Route::get('/dashboard-userPayment-active', [UserPaymentController::class, 'updateIsActive']);
+
+
+///////// Payment Routes /////////
+Route::get('/dashboard-payments', [PaymentController::class, 'index']);
+Route::get('/dashboard-payments-create', [PaymentController::class, 'create']);
+Route::post('/dashboard-payments-store', [PaymentController::class, 'store']);
+Route::get('/dashboard-payments-show', [PaymentController::class, 'show']);
+Route::get('/dashboard-payments-edit', [PaymentController::class, 'edit']);
+Route::post('/dashboard-payments-update', [PaymentController::class, 'update']);
+Route::get('/dashboard-payments-delete', [PaymentController::class, 'delete']);
+Route::get('/dashboard-payments-active', [PaymentController::class, 'updateIsActive']);

@@ -99,6 +99,12 @@
                 <div>User Payment Method</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="/dashboard-payments" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div>Payment Manager</div>
+            </a>
+        </li>
 
     </ul>
 
