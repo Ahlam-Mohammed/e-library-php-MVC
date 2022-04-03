@@ -33,6 +33,7 @@ class ComposerStaticInitbd151dbd08be281938351b5529f07eb6
         ),
         'A' => 
         array (
+            'App\\Seeder\\' => 11,
             'App\\Config\\' => 11,
             'App\\' => 4,
         ),
@@ -62,6 +63,10 @@ class ComposerStaticInitbd151dbd08be281938351b5529f07eb6
         'Dotenv\\' => 
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
+        ),
+        'App\\Seeder\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/database/seeders',
         ),
         'App\\Config\\' => 
         array (

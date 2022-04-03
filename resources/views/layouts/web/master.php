@@ -16,18 +16,9 @@ use App\Config\Response;
 
 <body onload="offerDate()">
 
-<pre><?php  var_dump($_SESSION); $response = new Response();?></pre>
+<!--<pre>--><?php // var_dump($_SESSION); $response = new Response();?><!--</pre>-->
 
-<?php if ($response->session->getFlash('success')){ ?>
-    <div class="alert alert-success">
-        <p><?php echo $response->session->getFlash('success') ?></p>
-    </div>
 
-<?php } elseif($response->session->getFlash('danger')){ ?>
-<div class="alert alert-danger">
-    <p><?php echo $response->session->getFlash('danger') ?></p>
-</div>
-<?php }?>
 
 <!-- navigation desktop -->
 <?php include __DIR__ . '../../../components/web/navigation.php' ?>
