@@ -12,6 +12,12 @@ php migrations.php
 composer serv
 ```
 
+###insert fake data
+```php
+# Run command line 
+php databaseSeeder.php
+```
+
 ### Credentials
 
 ```php
