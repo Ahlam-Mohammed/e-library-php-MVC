@@ -4,10 +4,17 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Middleware\AuthMiddleware;
 use App\Models\City;
 
 class CityController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+    }
+
     public function index()
     {
         $data = [
@@ -40,7 +47,7 @@ class CityController extends Controller
     public function store()
     {
         City::created(Request::getBody());
-        $this->redirect('dashboard-cities');
+        $this->redirect('dashboard-cities-index');
     }
 
     public function edit()
@@ -59,19 +66,19 @@ class CityController extends Controller
         $arrayData = array_slice(Request::getBody(),1);
 
         City::updated($arrayData,$id);
-        $this->redirect('dashboard-cities');
+        $this->redirect('dashboard-cities-index');
     }
 
     public function delete()
     {
         City::deleted($_GET['id']);
-        $this->redirect('dashboard-cities');
+        $this->redirect('dashboard-cities-index');
     }
 
     public function updateIsActive()
     {
         City::updateActive($_GET['id']);
-        $this->redirect('dashboard-cities');
+        $this->redirect('dashboard-cities-index');
     }
 
     private function getPathDashboard(): string

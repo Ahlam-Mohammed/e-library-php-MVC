@@ -4,11 +4,18 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Middleware\AuthMiddleware;
 use App\Models\Role;
 use App\Models\User;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+    }
+
     public function index()
     {
         $data = [
@@ -45,7 +52,7 @@ class UserController extends Controller
     public function store()
     {
         User::created(Request::getBody());
-        $this->redirect('dashboard-users');
+        $this->redirect('dashboard-users-index');
     }
 
     public function edit()
@@ -65,19 +72,19 @@ class UserController extends Controller
         $arrayData = array_slice(Request::getBody(),1);
 
         User::updated($arrayData,$id);
-        $this->redirect('dashboard-users');
+        $this->redirect('dashboard-users-index');
     }
 
     public function delete()
     {
         User::deleted($_GET['id']);
-        $this->redirect('dashboard-users');
+        $this->redirect('dashboard-users-index');
     }
 
     public function updateIsActive()
     {
         User::updateActive($_GET['id']);
-        $this->redirect('dashboard-users');
+        $this->redirect('dashboard-users-index');
     }
 
     private function getPathDashboard(): string

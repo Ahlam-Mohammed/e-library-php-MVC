@@ -4,12 +4,19 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Middleware\AuthMiddleware;
 use App\Models\Category;
 use App\Traits\Upload;
 
 class CategoryController extends Controller
 {
     use Upload;
+
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+    }
 
     public function index()
     {
@@ -49,7 +56,7 @@ class CategoryController extends Controller
             $arrayDate = array_merge(Request::getBody(), ['image' => $this->new_file_name]);
             Category::created($arrayDate);
 
-            $this->redirect('dashboard-categories');
+            $this->redirect('dashboard-categories-index');
         }
 
     }
@@ -77,20 +84,20 @@ class CategoryController extends Controller
 
             Category::updated($arrayDate,$id);
 
-            $this->redirect('dashboard-categories');
+            $this->redirect('dashboard-categories-index');
         }
     }
 
     public function delete()
     {
         Category::deleted($_GET['id']);
-        $this->redirect('dashboard-categories');
+        $this->redirect('dashboard-categories-index');
     }
 
     public function updateIsActive()
     {
         Category::updateActive($_GET['id']);
-        $this->redirect('dashboard-categories');
+        $this->redirect('dashboard-categories-index');
     }
 
     private function getPathDashboard(): string

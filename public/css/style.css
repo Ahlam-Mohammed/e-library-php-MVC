@@ -1189,3 +1189,30 @@ footer > article > .text p{
 .card.card--shadow.card--90w.done img{
     width: 35%;
 }
+.alert{
+    padding: 8px;
+    width: 30%;
+    height: 42px;
+    position: fixed;
+    left: 5%;
+    bottom: 5%;
+    z-index: 2222222;
+}
+.alert-success{
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+
+}
+.alert-success > p{
+    color: #0f5132; font-size: 16px
+}
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+
+}
+.alert-danger > p{
+    color: #842029; font-size: 16px
+}

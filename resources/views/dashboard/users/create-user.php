@@ -3,6 +3,7 @@
         <h5 class="card-header">Add New User</h5>
         <div class="card-body">
             <form action="dashboard-users-store" method="post" class="needs-validation"  novalidate>
+                <input hidden name="created_by" value="<?= \App\Config\Auth::id() ?>">
                 <div class="mb-3">
                     <div class="row">
                         <div class="col-6">

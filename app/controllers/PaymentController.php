@@ -4,12 +4,19 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Middleware\AuthMiddleware;
 use App\Models\Payment;
 use App\Traits\Upload;
 
 class PaymentController extends Controller
 {
     use Upload;
+
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+    }
 
     public function index()
     {
@@ -45,7 +52,7 @@ class PaymentController extends Controller
         if ($_FILES['image']['name'] === '')
         {
             Payment::created(Request::getBody());
-            $this->redirect('dashboard-payment');
+            $this->redirect('dashboard-payments-index');
         }
         else
         {
@@ -56,7 +63,7 @@ class PaymentController extends Controller
                 $arrayDate = array_merge(Request::getBody(), ['image' => $this->new_file_name]);
                 Payment::created($arrayDate);
 
-                $this->redirect('dashboard-payments');
+                $this->redirect('dashboard-payments-index');
             }
         }
 
@@ -80,7 +87,7 @@ class PaymentController extends Controller
         if (!(isset(Request::getBody()['oldImage'])) && Request::getFile('image')['name'] === '')
         {
             Payment::updated(Request::getBody(),$id);
-            $this->redirect('dashboard-payments');
+            $this->redirect('dashboard-payments-index');
         }
         else
         {
@@ -94,7 +101,7 @@ class PaymentController extends Controller
 
                 Payment::updated($arrayDate,$id);
 
-                $this->redirect('dashboard-payments');
+                $this->redirect('dashboard-payments-index');
             }
         }
 
@@ -103,13 +110,13 @@ class PaymentController extends Controller
     public function delete()
     {
         Payment::deleted($_GET['id']);
-        $this->redirect('dashboard-payments');
+        $this->redirect('dashboard-payments-index');
     }
 
     public function updateIsActive()
     {
         Payment::updateActive($_GET['id']);
-        $this->redirect('dashboard-payments');
+        $this->redirect('dashboard-payments-index');
     }
 
     private function getPathDashboard(): string

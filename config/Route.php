@@ -52,11 +52,24 @@ class Route
         }
 
         if (is_array($callback)){
+
             $className = array_shift($callback);
             $handler = new $className;
 
             $method = array_shift($callback);
+
+            $handler->action = $method;
+            $controller = new Controller();
+            $controller = $handler;
+
+            $middlewares = $controller->getMiddlewares();
+
+            foreach ($middlewares as $middleware) {
+                $middleware->execute();
+            }
+
             $callback = [$handler,$method];
+
         }
 
         if (!$callback) {
@@ -66,5 +79,6 @@ class Route
         }
 
         call_user_func_array($callback, [array_merge($_GET,$_POST)]);
+
     }
 }

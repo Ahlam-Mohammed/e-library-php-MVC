@@ -5,7 +5,7 @@
             <form action="" class="box__bulletin">
                 <div class="search search--flex">
                     <input type="text" class="search__input" placeholder="ادخل بريدك الالكتروني">
-                    <img src="images/icon/lock.svg" alt="اشتراك">
+                    <img src="/images/icon/lock.svg" alt="اشتراك">
                 </div>
                 <button class="subscription">اشتراك</button>
             </form>
@@ -57,24 +57,24 @@
         <article class="box">
             <h1 class="box__title">تواصل معنا</h1>
             <div class="box__item box__item--row">
-                <a href="#"><img src="images/icon/face.svg" alt="facebook"></a>
-                <a href="#"><img src="images/icon/tw.svg" alt="twiter"></a>
-                <a href="#"><img src="images/icon/youtup.svg" alt="youtup"></a>
-                <a href="#"><img src="images/icon/insta.svg" alt="instgram"></a>
-                <a href="#"><img src="images/icon/link.svg" alt="link"></a>
-                <a href="#"><img src="images/icon/snap.svg" alt="snap"></a>
-                <a href="#"><img src="images/icon/tik.svg" alt="tiktok"></a>
+                <a href="#"><img src="/images/icon/face.svg" alt="facebook"></a>
+                <a href="#"><img src="/images/icon/tw.svg" alt="twiter"></a>
+                <a href="#"><img src="/images/icon/youtup.svg" alt="youtup"></a>
+                <a href="#"><img src="/images/icon/insta.svg" alt="instgram"></a>
+                <a href="#"><img src="/images/icon/link.svg" alt="link"></a>
+                <a href="#"><img src="/images/icon/snap.svg" alt="snap"></a>
+                <a href="#"><img src="/images/icon/tik.svg" alt="tiktok"></a>
             </div>
         </article>
     </section>
     <article>
         <div class="credit">
-            <img src="images/credit/amer.png" alt="">
-            <img src="images/credit/master.png" alt="">
-            <img src="images/credit/visa.png" alt="">
-            <img src="images/credit/mada.png" alt="">
-            <img src="images/credit/qitaf.png" alt="">
-            <img src="images/credit/1.png" alt="">
+            <img src="/images/credit/amer.png" alt="">
+            <img src="/images/credit/master.png" alt="">
+            <img src="/images/credit/visa.png" alt="">
+            <img src="/images/credit/mada.png" alt="">
+            <img src="/images/credit/qitaf.png" alt="">
+            <img src="/images/credit/1.png" alt="">
         </div>
         <div class="text">
             <p>سياسة الخصوصية | شروط الخدمة</p>

@@ -45,8 +45,43 @@
 <!-- Page JS -->
 <script src="/assets/js/tables-datatables-extensions.js"></script>
 <script src="/assets/js/form-validation.js"></script>
+<script src="/assets/js/forms-selects.js"></script>
+<script src="/assets/js/forms-tagify.js"></script>
+<script src="/assets/js/forms-typeahead.js"></script>
 
 <script src="/assets/js/app-access-permission.js"></script>
 <script src="/assets/js/modal-add-permission.js"></script>
 <script src="/assets/js/modal-edit-permission.js"></script>
+
+
+
+
+
+
+
+<script>
+
+    // let category       = document.getElementById('category');
+    // let categorySelect = document.getElementById('categorySelect');
+
+    // const category        = document.querySelector("#category");
+    // const categorySelect  = document.querySelector("#categorySelect");
+
+    // category.addEventListener('click', ()=>{
+    //     categorySelect.style.display = "block"
+    // })
+
+    $(document).ready( function () {
+
+        $('#category').on('click', function (){
+            $('#categorySelect').fadeToggle(200);
+        });
+
+        $('#book').on('click', function (){
+            $('#bookSelect').fadeToggle(200);
+        });
+
+    })
+
+</script>
 
