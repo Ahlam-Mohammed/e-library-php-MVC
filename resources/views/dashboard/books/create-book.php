@@ -3,6 +3,7 @@
         <h5 class="card-header">Add New Book</h5>
         <div class="card-body">
             <form action="dashboard-books-store" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+                <input hidden name="created_by" value="<?= \App\Config\Auth::id() ?>">
                 <div class="mb-3">
                     <label class="form-label" for="bs-validation-name">Title</label>
                     <input name="title" type="text" class="form-control" id="bs-validation-name" placeholder="title book" required />

@@ -4,6 +4,7 @@
         <div class="card-body">
             <form action="dashboard-authors-store" method="post" class="needs-validation"  novalidate>
                 <div class="mb-3">
+                    <input hidden name="created_by" value="<?= \App\Config\Auth::id() ?>">
                     <label class="form-label" for="bs-validation-name">Name</label>
                     <input name="name" type="text" class="form-control" id="bs-validation-name" placeholder="Name Author" required />
                     <div class="valid-feedback"> Looks good! </div>

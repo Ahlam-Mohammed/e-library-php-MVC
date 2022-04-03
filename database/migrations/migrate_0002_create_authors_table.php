@@ -13,7 +13,8 @@ class migrate_0002_create_authors_table extends Database
                     `email` VARCHAR(255) DEFAULT NULL,
                     `bio` TEXT DEFAULT NULL,
                     `is_active` TINYINT(1) NOT NULL DEFAULT 1,
-                    `created_by` INT(5) DEFAULT NULL,
+                    `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
+                    `created_by` INT(5) NOT NULL ,
                     `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP(),
                     `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP()
                 ) ENGINE=INNODB";

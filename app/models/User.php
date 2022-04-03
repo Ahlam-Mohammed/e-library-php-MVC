@@ -46,4 +46,11 @@ class User extends Model
                             ->where('id', '=', $id)
                             ->UpdateIsActive();
     }
+
+    public static function findUser($email)
+    {
+        return (new User()) ->table(self::TABLE_NAME)
+                            ->where('email', '=', $email)
+                            ->get();
+    }
 }

@@ -4,12 +4,25 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Config\Response;
+use App\Config\Session;
+use App\Middleware\AuthMiddleware;
 use App\Models\Author;
 use App\Traits\Upload;
 
 class AuthorController extends Controller
 {
     use Upload;
+
+    public $response;
+
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+
+        $this->response = new Response();
+    }
 
     public function index()
     {
@@ -43,7 +56,8 @@ class AuthorController extends Controller
     public function store()
     {
         Author::created(Request::getBody());
-        $this->redirect('dashboard-authors');
+        $this->response->session->setFlash('success','Deleted Successful');
+        $this->redirect('dashboard-authors-index');
     }
 
     public function edit()
@@ -62,19 +76,22 @@ class AuthorController extends Controller
         $arrayData = array_slice(Request::getBody(),1);
 
         Author::updated($arrayData,$id);
-        $this->redirect('dashboard-authors');
+        $this->response->session->setFlash('success','Deleted Successful');
+        $this->redirect('dashboard-authors-index');
     }
 
     public function delete()
     {
         Author::deleted($_GET['id']);
-        $this->redirect('dashboard-authors');
+        $this->response->session->setFlash('success','Deleted Successful');
+        $this->redirect('dashboard-authors-index');
     }
 
     public function updateIsActive()
     {
         Author::updateActive($_GET['id']);
-        $this->redirect('dashboard-authors');
+        Session::setFlash('success','Deleted Successful');
+        $this->redirect('dashboard-authors-index');
     }
 
     private function getPathDashboard(): string

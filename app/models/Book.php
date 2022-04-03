@@ -46,4 +46,5 @@ class Book extends Model
                             ->where('id', '=', $id)
                             ->UpdateIsActive();
     }
+
 }

@@ -13,6 +13,7 @@ class migrate_0012_create_user_addresses_table extends Database
                     `address` VARCHAR(255) NOT NULL,
                     `phone` VARCHAR(255) NOT NULL,
                     `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+                    `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
                     `lat` DOUBLE DEFAULT NULL,
                     `lng` DOUBLE DEFAULT NULL,
                     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),

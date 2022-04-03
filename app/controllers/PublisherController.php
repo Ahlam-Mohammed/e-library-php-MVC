@@ -4,11 +4,18 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Middleware\AuthMiddleware;
 use App\Models\Publisher;
 use App\Traits\Upload;
 
 class PublisherController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+    }
+
     use Upload;
 
     public function index()
@@ -45,7 +52,7 @@ class PublisherController extends Controller
         if ($_FILES['image']['name'] === '')
         {
             Publisher::created(Request::getBody());
-            $this->redirect('dashboard-publishers');
+            $this->redirect('dashboard-publishers-index');
         }
         else
         {
@@ -56,7 +63,7 @@ class PublisherController extends Controller
                 $arrayDate = array_merge(Request::getBody(), ['image' => $this->new_file_name]);
                 Publisher::created($arrayDate);
 
-                $this->redirect('dashboard-publishers');
+                $this->redirect('dashboard-publishers-index');
             }
         }
 
@@ -80,7 +87,7 @@ class PublisherController extends Controller
         if (!(isset(Request::getBody()['oldImage'])) && Request::getFile('image')['name'] === '')
         {
             Publisher::updated(Request::getBody(),$id);
-            $this->redirect('dashboard-publishers');
+            $this->redirect('dashboard-publishers-index');
         }
         else
         {
@@ -94,7 +101,7 @@ class PublisherController extends Controller
 
                 Publisher::updated($arrayDate,$id);
 
-                $this->redirect('dashboard-publishers');
+                $this->redirect('dashboard-publishers-index');
             }
         }
 
@@ -103,13 +110,13 @@ class PublisherController extends Controller
     public function delete()
     {
         Publisher::deleted($_GET['id']);
-        $this->redirect('dashboard-publishers');
+        $this->redirect('dashboard-publishers-index');
     }
 
     public function updateIsActive()
     {
         Publisher::updateActive($_GET['id']);
-        $this->redirect('dashboard-publishers');
+        $this->redirect('dashboard-publishers-index');
     }
 
     private function getPathDashboard(): string

@@ -4,6 +4,6 @@ namespace App\Enum;
 
 class RoleEnum
 {
-    const ADMIN_ROLE = 'ADMIN';
-    const USER_ROLE  = 'USER';
+    const ADMIN_ROLE = 1;
+    const USER_ROLE  = 2;
 }

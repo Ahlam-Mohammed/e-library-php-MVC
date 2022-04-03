@@ -13,6 +13,7 @@ class migrate_0000_create_users_table extends Database
                     `email` VARCHAR(255) NOT NULL,
                     `password` VARCHAR(255) NOT NULL,
                     `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+                    `is_deleted` TINYINT(1) NOT NULL DEFAULT 0,
                     `role_id` INT(1) NOT NULL,
                     `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP(),
                     `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP()

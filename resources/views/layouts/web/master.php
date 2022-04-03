@@ -1,3 +1,6 @@
+<?php
+use App\Config\Response;
+?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -13,51 +16,24 @@
 
 <body onload="offerDate()">
 
+<pre><?php  var_dump($_SESSION); $response = new Response();?></pre>
+
+<?php if ($response->session->getFlash('success')){ ?>
+    <div class="alert alert-success">
+        <p><?php echo $response->session->getFlash('success') ?></p>
+    </div>
+
+<?php } elseif($response->session->getFlash('danger')){ ?>
+<div class="alert alert-danger">
+    <p><?php echo $response->session->getFlash('danger') ?></p>
+</div>
+<?php }?>
+
 <!-- navigation desktop -->
 <?php include __DIR__ . '../../../components/web/navigation.php' ?>
 
 <!-- Header -->
 <?php include __DIR__ . '../../../components/web/header.php' ?>
-
-<!-- banner -->
-<section>
-    <div class="banner">
-
-        <!-- images slide -->
-        <div class="banner__item">
-            <img class="banner__img" src="images/banner/1.jpg" alt="">
-        </div>
-        <div class="banner__item">
-            <img class="banner__img" src="images/banner/2.jpg" alt="">
-        </div>
-        <div class="banner__item">
-            <img class="banner__img" src="images/banner/5.jpg" alt="">
-        </div>
-        <div class="banner__item">
-            <img class="banner__img" src="images/banner/3.jpg" alt="">
-        </div>
-        <div class="banner__item">
-            <img class="banner__img" src="images/banner/4.jpg" alt="">
-        </div>
-        <div class="banner__item">
-            <img class="banner__img" src="images/banner/5.jpg" alt="">
-        </div>
-
-        <!-- prev and next slide -->
-        <a class="prev" onclick="plus(-1)">&#10094;</a>
-        <a class="next" onclick="plus(1)">&#10095;</a>
-
-        <!-- unit -->
-        <div class="unit">
-            <span class="unit__item" onclick="current(1)"></span>
-            <span class="unit__item" onclick="current(2)"></span>
-            <span class="unit__item" onclick="current(3)"></span>
-            <span class="unit__item" onclick="current(4)"></span>
-            <span class="unit__item" onclick="current(5)"></span>
-            <span class="unit__item" onclick="current(6)"></span>
-        </div>
-    </div>
-</section>
 
 <!-- Content -->
 <?php include $data['content']; ?>
@@ -72,9 +48,8 @@
 <!-- register model -->
 <?php include __DIR__ . '../../../components/web/register-model.php' ?>
 
-<!-- image model -->
-<?php include __DIR__ . '../../../components/web/display-image-model.php' ?>
 
 <?php include 'script.php' ?>
+
 </body>
 </html>

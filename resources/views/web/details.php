@@ -1,10 +1,19 @@
+<?php
+
+$book        = $data['book'];
+$category    = $data['category'];
+$author      = $data['author'];
+$publisher   = $data['publisher'];
+$alternative = $data['alternative'];
+
+?>
+
 <!-- link block -->
-<article>
+    <article>
         <ul class="link">
-            <li class="link__item"><a href="#" class="link__link">الرئيسية</a></li>
-            <li class="link__item"><a href="#" class="link__link">الكتب العربية</a></li>
-            <li class="link__item"><a href="#" class="link__link">كتب إلكترونية</a></li>
-            <li class="link__item"><a href="#" class="link__link">لأنك الله (كتاب إلكتروني)</a></li>
+            <li class="link__item"><a href="/" class="link__link">الرئيسية</a></li>
+            <li class="link__item"><a href="/categories?id=<?= $category[0]['id'] ?>" class="link__link"><?= $category[0]['name'] ?></a></li>
+            <li class="link__item"><a href="/details?id=<?= $book[0]['id'] ?>" class="link__link"><?= $book[0]['title'] ?></a></li>
         </ul>
     </article>
 
@@ -15,13 +24,8 @@
             <section class="images-book">
                 <div class="card card--shadow card--details card--86w">
                     <figure>
-                        <img id="img-main" src="images/product/book1.jpg" alt="" class="card__img">
+                        <img id="img-main" src="/uploads/<?= $book[0]['image'] ?>" alt="" class="card__img" style="cursor: pointer;">
                     </figure>
-                    <div class="imges">
-                        <img src="images/product/book2.jpg" alt="" class="img__item img">
-                        <img src="images/product/book1.jpg" alt="" class="img__item img">
-                        <img src="images/product/book3.jpg" alt="" class="img__item img">
-                    </div>
                 </div>
             </section>
 
@@ -29,17 +33,17 @@
             <section class="details-book">
                 <div class="details">
                     <div class="book-type book-type--start">
-                        <h1>لأنك الله (كتاب إلكتروني)</h1>
+                        <h1><?= $book[0]['title'] . "(" . $book[0]['format'] . ")" ?></h1>
                     </div>
                     <div class="book-link">
-                        <a href="" class="book-link--cyan">عرض المزيد<img src="images/icon/more.svg"></a>
+                        <a href="#more" class="book-link--cyan">عرض المزيد<img src="images/icon/more.svg"></a>
                     </div>
                     <div class="book-price" style="margin-top: 0;">
-                        <h3 class="book-price__price--large">24 <span class="book-price__currency--large">ر.س</span></h3>
+                        <h3 class="book-price__price--large"><?= $book[0]['price'] ?> <span class="book-price__currency--large">ر.س</span></h3>
                         <p class="book-price__tax">شامل الضرائب</p>
                     </div>
                     <div class="details__item">
-                        <h4 class="details__text">وحدة البيع:Each</h4>
+<!--                        <h4 class="details__text">وحدة البيع:Each</h4>-->
                         <div class="rating">
                             <img src="images/icon/rating.svg" class="rating__star" alt="">
                             <img src="images/icon/rating.svg" class="rating__star" alt="">
@@ -48,7 +52,7 @@
                             <img src="images/icon/rating.svg" class="rating__star" alt="">
                             <a href="" class="book-link--cyan">(15 المراجعات)</a>
                         </div>
-                        <p class="details__text">رقم الصنف <b>JBB410156</b>رقم المنتج <b>4</b></p>
+<!--                        <p class="details__text">رقم الصنف <b>JBB410156</b>رقم المنتج <b>4</b></p>-->
                     </div>
 
                     <div class="book-link">
@@ -56,20 +60,10 @@
                         <div class="row">
                             <div class="row__item">
                                 <span class="radio"></span>
-                                <a href="" class="row__link">كتاب إلكتروني<img src="images/icon/qus.svg"></a>
+                                <a href="" class="row__link"><?= $book[0]['format'] ?><img src="images/icon/qus.svg"></a>
                             </div>
                             <div class="book-price">
-                                <h3 class="book-price__price">24 <span class="book-price__currency">ر.س</span></h3>
-                                <p class="book-price__tax">شامل الضرائب</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="row__item">
-                                <span class="radio"></span>
-                                <a href="" class="row__link">كتاب مطبوع</a>
-                            </div>
-                            <div class="book-price">
-                                <h3 class="book-price__price">24 <span class="book-price__currency">ر.س</span></h3>
+                                <h3 class="book-price__price"><?= $book[0]['price'] ?> <span class="book-price__currency">ر.س</span></h3>
                                 <p class="book-price__tax">شامل الضرائب</p>
                             </div>
                         </div>
@@ -112,88 +106,50 @@
 
             <!-- short description -->
             <article class="description">
-                <p>كتاب يتحدث عن بعض أسما الله الحسنى وكيف نعيشها في حياتنا حرص المؤلف أن يكون الكتاب مناسبا لمن هم متوسطي الثقافة ويكون مناسبا للمحتاج والمريض والسليم</p>
+                <p><?= $book[0]['description'] ?></p>
             </article>
         </div>
 
         <!-- specifications -->
-        <section>
+        <section id="more">
             <header class="header">
                 <h1 class="header__title--blue">المواصفات</h1>
             </header>
             <table class="specifications">
                 <tr class="specifications__row">
+                    <td class="specifications__td">الصنف</td>
+                    <th class="specifications__th"><?= $category[0]['name'] ?></th>
+                </tr>
+                <tr class="specifications__row">
                     <td class="specifications__td">رقم الصنف</td>
-                    <th class="specifications__th">JBB410156</th>
+                    <th class="specifications__th"><?= $category[0]['id'] ?></th>
                 </tr>
                 <tr class="specifications__row">
                     <td class="specifications__td">رقم المنتج</td>
-                    <th class="specifications__th">4</th>
+                    <th class="specifications__th"><?= $book[0]['id'] ?></th>
                 </tr>
                 <tr class="specifications__row">
                     <td class="specifications__td">المؤلف</td>
-                    <th class="specifications__th">علي جابر الفيفي</th>
+                    <th class="specifications__th"><?= $author[0]['name'] ?></th>
                 </tr>
                 <tr class="specifications__row">
                     <td class="specifications__td"> الناشر</td>
-                    <th class="specifications__th">دار الحضارة للنشر والتوزيع</th>
+                    <th class="specifications__th"><?= $publisher[0]['name'] ?></th>
                 </tr>
                 <tr class="specifications__row">
                     <td class="specifications__td">تاريخ النشر</td>
-                    <th class="specifications__th">2016</th>
+                    <th class="specifications__th"><?= $book[0]['created_at'] ?></th>
                 </tr>
                 <tr class="specifications__row">
                     <td class="specifications__td">صيغة الكتاب</td>
-                    <th class="specifications__th">Ebook</th>
+                    <th class="specifications__th"><?= $book[0]['format'] ?></th>
                 </tr>
                 <tr class="specifications__row">
                     <td class="specifications__td">عدد الصفحات</td>
-                    <th class="specifications__th">182</th>
-                </tr>
-                <tr class="specifications__row">
-                    <td class="specifications__td">وزن الشحن (كجم)</td>
-                    <th class="specifications__th">0.0100</th>
-                </tr>
-                <tr class="specifications__row">
-                    <td class="specifications__td">صيغة الملف</td>
-                    <th class="specifications__th">ePub</th>
-                </tr>
-                <tr class="specifications__row">
-                    <td class="specifications__td">اللغة</td>
-                    <th class="specifications__th">عربي</th>
+                    <th class="specifications__th"><?= $book[0]['pages_number'] ?></th>
                 </tr>
             </table>
         </section>
-
-        <!-- comments -->
-        <section>
-            <header class="header">
-                <h1 class="header__title--blue">مراجعات العملاء</h1>
-                <button class="btn btn--blue"><img src="images/icon/plus.svg" alt="plus">اكتب مراجعتك</button>
-            </header>
-            <div class="comment">
-                <div class="comment__item">
-                    <h3 class="comment__title">good</h3>
-                    <div class="comment__user">
-                        <span>من قبل reem</span>
-                        <span>2021/11/16</span>
-                    </div>
-                </div>
-                <p class="comment__p">Good</p>
-            </div>
-            <div class="comment">
-                <div class="comment__item">
-                    <h3 class="comment__title">good</h3>
-                    <div class="comment__user">
-                        <span>من قبل reem</span>
-                        <span>2021/11/16</span>
-                    </div>
-                </div>
-                <p class="comment__p">Good</p>
-            </div>
-            
-        </section>
-
         <!-- related book -->
         <section>
             <header class="header">
@@ -203,78 +159,20 @@
                 <div class="category__prev">
                     <a href="#"><img src="images/icon/arrow.svg" alt="السابق"></a>
                 </div>
-                <article class="card card--shadow card--related">
-                    <img src="images/product/related1.jpg" class="card__img--min" alt="صورة الكتاب">
-                    <div class="card__info card__info--min">
-                        <div class="book-title">
-                            <h1><a href="#" class="book-title__item">وهوى (كتاب إلكتروني)</a></h1>
+                <?php foreach ($alternative as $alt) {?>
+                    <article class="card card--shadow card--related">
+                        <img src="/uploads/<?= $alt['image'] ?>" class="card__img--min" alt="صورة الكتاب">
+                        <div class="card__info card__info--min">
+                            <div class="book-title">
+                                <h1><a href="/details?id=<?= $alt['id'] ?>" class="book-title__item"><?= $alt['title'] . "(" . $alt['format'] . ")" ?></a></h1>
+                            </div>
+                            <div class="book-price">
+                                <h3 class="book-price__price--min"><?= $alt['price'] ?> <span class="book-price__currency">ر.س</span></h3>
+                                <p class="book-price__tax">شامل الضرائب</p>
+                            </div>
                         </div>
-                        <div class="book-price">
-                            <h3 class="book-price__price--min">24 <span class="book-price__currency">ر.س</span></h3>
-                            <p class="book-price__tax">شامل الضرائب</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="card card--shadow card--related">
-                    <img src="images/product/related1.jpg" class="card__img--min" alt="صورة الكتاب">
-                    <div class="card__info card__info--min">
-                        <div class="book-title">
-                            <h1><a href="#" class="book-title__item">وهوى (كتاب إلكتروني)</a></h1>
-                        </div>
-                        <div class="book-price">
-                            <h3 class="book-price__price--min">24 <span class="book-price__currency">ر.س</span></h3>
-                            <p class="book-price__tax">شامل الضرائب</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="card card--shadow card--related">
-                    <img src="images/product/related1.jpg" class="card__img--min" alt="صورة الكتاب">
-                    <div class="card__info card__info--min">
-                        <div class="book-title">
-                            <h1><a href="#" class="book-title__item">وهوى (كتاب إلكتروني)</a></h1>
-                        </div>
-                        <div class="book-price">
-                            <h3 class="book-price__price--min">24 <span class="book-price__currency">ر.س</span></h3>
-                            <p class="book-price__tax">شامل الضرائب</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="card card--shadow card--related">
-                    <img src="images/product/related1.jpg" class="card__img--min" alt="صورة الكتاب">
-                    <div class="card__info card__info--min">
-                        <div class="book-title">
-                            <h1><a href="#" class="book-title__item">وهوى (كتاب إلكتروني)</a></h1>
-                        </div>
-                        <div class="book-price">
-                            <h3 class="book-price__price--min">24 <span class="book-price__currency">ر.س</span></h3>
-                            <p class="book-price__tax">شامل الضرائب</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="card card--shadow card--related">
-                    <img src="images/product/related1.jpg" class="card__img--min" alt="صورة الكتاب">
-                    <div class="card__info card__info--min">
-                        <div class="book-title">
-                            <h1><a href="#" class="book-title__item">وهوى (كتاب إلكتروني)</a></h1>
-                        </div>
-                        <div class="book-price">
-                            <h3 class="book-price__price--min">24 <span class="book-price__currency">ر.س</span></h3>
-                            <p class="book-price__tax">شامل الضرائب</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="card card--shadow card--related">
-                    <img src="images/product/related1.jpg" class="card__img--min" alt="صورة الكتاب">
-                    <div class="card__info card__info--min">
-                        <div class="book-title">
-                            <h1><a href="#" class="book-title__item">وهوى (كتاب إلكتروني)</a></h1>
-                        </div>
-                        <div class="book-price">
-                            <h3 class="book-price__price--min">24 <span class="book-price__currency">ر.س</span></h3>
-                            <p class="book-price__tax">شامل الضرائب</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
+                <?php }?>
                 <div class="category__next">
                     <a href="#"><img src="images/icon/arrow.svg" class="category__arrow--next" alt="التالي"></a>
                 </div>
@@ -282,3 +180,6 @@
         </section>
 
     </main>
+
+    <!-- image model -->
+    <?php include __DIR__ . '../../components/web/display-image-model.php' ?>

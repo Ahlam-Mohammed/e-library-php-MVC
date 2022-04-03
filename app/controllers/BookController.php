@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Config\Controller;
 use App\Config\Request;
+use App\Middleware\AuthMiddleware;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Publisher;
@@ -13,6 +14,12 @@ use App\Traits\Upload;
 class BookController extends Controller
 {
     use Upload;
+
+    public function __construct()
+    {
+        $this->registerMiddleware(
+            new AuthMiddleware(['index','show','create','store','edit','delete','update','updateIsActive']));
+    }
 
     public function index()
     {
@@ -60,7 +67,7 @@ class BookController extends Controller
             $arrayDate = array_merge(Request::getBody(), ['image' => $this->new_file_name]);
             Book::created($arrayDate);
 
-            $this->redirect('dashboard-books','layouts/dashboard/master');
+            $this->redirect('dashboard-books-index','layouts/dashboard/master');
         }
 
     }
@@ -91,20 +98,20 @@ class BookController extends Controller
 
             Book::updated($arrayDate,$id);
 
-            $this->redirect('dashboard-books');
+            $this->redirect('dashboard-books-index');
         }
     }
 
     public function delete()
     {
         Book::deleted($_GET['id']);
-        $this->redirect('dashboard-books');
+        $this->redirect('dashboard-books-index');
     }
 
     public function updateIsActive()
     {
         Book::updateActive($_GET['id']);
-        $this->redirect('dashboard-books');
+        $this->redirect('dashboard-books-index');
     }
 
     private function getPathDashboard(): string
